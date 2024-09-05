@@ -549,13 +549,16 @@ margin-top: 50px;
   .footer1 a:hover {
     text-decoration: underline; /* Underline on hover */
   }
+  
   /* Styles for small screens (mobile devices) */
 @media (max-width: 768px) {
     .header-content {
         flex-direction: column;
         align-items: center;
     }
-
+    #chart{
+        width: 10%;
+    }
     nav ul {
         flex-direction: column;
         align-items: flex-start;
