@@ -477,7 +477,7 @@ button.publications-button {
 }
 
 
-.citation-images img {
+.citation img {
     width: 40px; /* Decreased width for smaller size */
     margin-left: 20%;
     height: auto; /* Maintain aspect ratio */
@@ -549,4 +549,84 @@ margin-top: 50px;
   .footer1 a:hover {
     text-decoration: underline; /* Underline on hover */
   }
-  
+  /* Styles for small screens (mobile devices) */
+@media (max-width: 768px) {
+    .header-content {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    nav ul {
+        flex-direction: column;
+        align-items: flex-start;
+        margin-top: 0;
+    }
+
+    .profile-container {
+        flex-direction: column;
+        margin: 10px;
+    }
+
+    .profile-sidebar {
+        width: 100%;
+    }
+    .profile-image-container{
+        width: 35%;
+        margin-left: 35%;
+    }
+     .profile-main {
+        width: 100%;
+    }
+
+    .stats-box {
+        flex-direction: column;
+    }
+
+    .similar-experts-list {
+        width: 100%;
+    }
+}
+
+/* Styles for medium screens (tablets) */
+@media (min-width: 769px) and (max-width: 1024px) {
+    .header-content {
+        flex-direction: row;
+        justify-content: space-between;
+    }
+
+    .profile-container {
+        flex-direction: row;
+    }
+
+    .profile-sidebar {
+        width: 35%;
+    }
+
+    .profile-main {
+        width: 65%;
+    }
+}
+
+/* Styles for large screens (desktops) */
+@media (min-width: 1025px) {
+    .profile-container {
+        flex-direction: row;
+        max-width: 1200px;
+    }
+
+    .profile-sidebar {
+        width: 250px;
+    }
+ .nav {
+        flex-direction: column;
+        align-items: center;
+    }
+    .profile-main {
+        flex-grow: 1;
+        padding: 20px;
+    }
+
+    .stats-box {
+        flex-direction: row;
+    }
+}
