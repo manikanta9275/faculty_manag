@@ -294,6 +294,29 @@
 // Call function to display details when the page loads
 displayFacultyDetails();
 
+document.addEventListener('DOMContentLoaded', function() {
+    // Check if the user is logged in (status is 1)
+    if (localStorage.getItem('status') !== '1') {
+        window.location.href = 'index.html'; // Redirect to login page if not logged in
+    }
+
+    // Logout functionality
+    const logoutLink = document.getElementById('logoutLink');
+    logoutLink.addEventListener('click', function(event) {
+        event.preventDefault();
+        localStorage.setItem('status', '0'); // Set status to 0 (logged out)
+        window.location.href = 'index.html'; // Redirect to login page
+    });
+
+    // Prevent back navigation after logout
+    window.history.pushState(null, '', window.location.href); // Push current state into history
+    window.addEventListener('popstate', function() {
+        if (localStorage.getItem('status') !== '1') {
+            window.location.href = 'index.html'; // Redirect to login if back button is pressed after logout
+        }
+    });
+});
+
 </script>
 
 </head>
@@ -310,7 +333,7 @@ displayFacultyDetails();
             <nav>
                 <ul>
                     <li class="home"><a href="index1.html">Home</a></li>
-                    <li class="home"><a href="index.html">Logout</a></li>
+                    <li class="home"><a href="index.html" id="logoutLink">Logout</a></li>
                     <!-- <li class="dropdown">
                         <a href="#">About Us</a>
                         <div class="dropdown-content">

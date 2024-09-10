@@ -42,7 +42,7 @@
 <body>
     <div class="container login-container">
         <div class="login-form">
-            <h2 class="text-center">Welcome Hod</h2>
+            <h2 class="text-center">Welcome HOD</h2>
             <div id="errorMessage" class="error-message"></div>
             <form id="loginForm">
                 <div class="form-group">
@@ -59,8 +59,8 @@
     </div>
 
     <script>
-        const encodedUsername = 'bWFuaQ=='; 
-        const encodedPassword = 'YWJoaTEyMw=='; 
+        const encodedUsername = 'bWFuaQ=='; // 'mani' encoded in base64
+        const encodedPassword = 'YWJoaTEyMw=='; // 'abhi123' encoded in base64
         
         document.getElementById('loginForm').addEventListener('submit', function(event) {
             event.preventDefault();
@@ -70,6 +70,8 @@
             const errorMessage = document.getElementById('errorMessage');
 
             if (username === atob(encodedUsername) && password === atob(encodedPassword)) {
+                // Set logged in status
+                localStorage.setItem('status', '1');
                 window.location.href = 'index1.html';
             } else {
                 errorMessage.textContent = 'Invalid username or password';
@@ -77,9 +79,5 @@
             }
         });
     </script>
-    
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>
