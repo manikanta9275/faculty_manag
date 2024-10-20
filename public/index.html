@@ -6,38 +6,14 @@
     <title>Login Form</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <style>
-        .login-container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh; /* Full viewport height */
-            background-color: #f8f9fa; /* Light background color */
-        }
-        .login-form {
-            max-width: 400px;
-            width: 100%;
-            padding: 20px;
-            border: 1px solid #dee2e6;
-            border-radius: 0.25rem;
-            background-color: #ffffff; /* White background color */
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Subtle shadow */
-        }
-        .login-form .form-control {
-            border-radius: 0;
-        }
-        .login-form .btn {
-            border-radius: 0;
-        }
-        .login-form h2 {
-            margin-bottom: 20px;
-            font-family: 'Courier New', Courier, monospace; /* Change font style */
-        }
-        .error-message {
-            color: red;
-            margin-bottom: 10px;
-            display: none; /* Hide initially */
-        }
+        .login-container { display: flex; justify-content: center; align-items: center; height: 100vh; background-color: #f8f9fa; }
+        .login-form { max-width: 400px; width: 100%; padding: 20px; border: 1px solid #dee2e6; border-radius: 0.25rem; background-color: #ffffff; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); }
+        .login-form .form-control { border-radius: 0; }
+        .login-form .btn { border-radius: 0; }
+        .login-form h2 { margin-bottom: 20px; font-family: 'Courier New', Courier, monospace; }
+        .error-message { color: red; margin-bottom: 10px; display: none; }
     </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jsSHA/3.2.0/sha256.js"></script>
 </head>
 <body>
     <div class="container login-container">
@@ -57,20 +33,26 @@
             </form>
         </div>
     </div>
-
     <script>
-        const encodedUsername = 'aG9k'; 
-        const encodedPassword = 'Y3NlQDEyMw=='; 
-        
+        const hashedUsername = '8b423b0341718c5c5f4b27a36b8eadd5a9b5a24e7c8d7f63c93b108f77d798cd'; // SHA-256 hash of 'hod'
+        const hashedPassword = 'e3c1237eec2db2ebd2efdf2895f4e2f16e23e2e965f84243ed7d53ffdbf8b91d'; // SHA-256 hash of 'cse@123'
+
         document.getElementById('loginForm').addEventListener('submit', function(event) {
             event.preventDefault();
-            
+
             const username = document.getElementById('username').value;
             const password = document.getElementById('password').value;
             const errorMessage = document.getElementById('errorMessage');
 
-            if (username === atob(encodedUsername) && password === atob(encodedPassword)) {
-                // Set logged in status
+            const shaObjUsername = new jsSHA("SHA-256", "TEXT");
+            shaObjUsername.update(username);
+            const hashUsername = shaObjUsername.getHash("HEX");
+
+            const shaObjPassword = new jsSHA("SHA-256", "TEXT");
+            shaObjPassword.update(password);
+            const hashPassword = shaObjPassword.getHash("HEX");
+
+            if (hashUsername === hashedUsername && hashPassword === hashedPassword) {
                 localStorage.setItem('status', '1');
                 window.location.href = 'index1.html';
             } else {
